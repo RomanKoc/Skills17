@@ -1,0 +1,33 @@
+.like-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.liked {
+    color: #fc624d;
+}
+
+/* el bottstrap hacia que no cuadrase bien la foto por lo que hemos usado GRID
+asi practicamos mas cosas :) */
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    gap: 5px;
+    justify-content: center;
+    justify-items: center;
+
+}
+.btn {
+    color: #000; 
+    background-color: #ff895d;
+    border-color:#fc624d;
+}
+.btn:hover {
+    color: #fff; 
+    background-color: #fc624d;  
+    border-color: #fc624d;  
+    transform: scale(1.05);
+}
+.megusta:active{
+    transform: translate(0px, -2px);
+}

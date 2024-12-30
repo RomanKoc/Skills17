@@ -1,0 +1,6 @@
+nelmio_cors:
+    defaults:
+        allow_origin: []
+        
+    paths:
+        '^/': null

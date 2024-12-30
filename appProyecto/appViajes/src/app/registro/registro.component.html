@@ -1,0 +1,65 @@
+<div class="container contact-form mt-3 col-xl-12 col-lg-12 col-md-12 col-11">
+    <div class="contact-image">
+        <img class="mt-3" style="max-width: 120px;" src="../../assets/img/imgFormulario.png" alt="rocket_contact" />
+    </div>
+
+    <form [formGroup]="formularioRegistro" (ngSubmit)="registrarUsuario()">
+        <h3>Registrarse</h3>
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center ">
+                <div class="form-floating col-9 col-md-7">
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre"
+                    [ngClass]="determinarInputs(formularioRegistro.get('nombre'))">
+                    @if(this.formularioRegistro.get('nombre')?.errors?.['required']){}
+                    <label>Nombre</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-floating mt-2 col-9 col-md-7">
+                    <input type="email" class="form-control" placeholder="Apellido" formControlName="apellidos"
+                    [ngClass]="determinarInputs(formularioRegistro.get('apellidos'))">
+                    @if(this.formularioRegistro.get('apellidos')?.errors?.['required']){}
+                    <label>Apellidos</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-floating mt-2 col-9 col-md-7">
+                    <input type="email" class="form-control" placeholder="name@example.com" formControlName="mail"
+                    [ngClass]="determinarInputs(formularioRegistro.get('mail'))">
+                    @if(this.formularioRegistro.get('mail')?.errors?.['required']){}
+                    <label>Correo</label>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-floating mt-2 col-9 col-md-7">
+                    <input type="text" class="form-control" placeholder="ciudad" formControlName="ciudad"
+                    [ngClass]="determinarInputs(formularioRegistro.get('ciudad'))">
+                    @if(this.formularioRegistro.get('ciudad')?.errors?.['required']){}
+                    <label>Ciudad</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-floating mt-2 col-9 col-md-7">
+                    <input type="{{tipoPasswd}}" class="form-control" placeholder="Password" formControlName="password"
+                    [ngClass]="determinarInputs(formularioRegistro.get('password'))">
+                    @if(this.formularioRegistro.get('password')?.errors?.['required']){}
+                    <label>Contraseña</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <label class="passwd mt-1 col-9 col-md-7">
+                    <input class="form-check-input" type="checkbox" id="boton-ver" name="mostrarPassw" (click)="mostrarPassw()"> Mostrar
+                    Contraseña
+                </label>
+            </div>
+
+            <div class="d-flex justify-content-center mt-2 mb-3">
+                <button class="btn btn-lg" type="submit">Crear usuario <i class="bi bi-person-fill-add"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

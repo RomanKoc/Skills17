@@ -1,0 +1,142 @@
+@for (exp of experiencias; track $index) {
+@if (exp.id == id) {
+<div class="container mt-4">
+    <div class="row slider">
+        <!--  d-flex justify-content-center -->
+        <div class="col">
+            <h1 class="mx-3 texto-con-sombra" style="color: #f78536;">{{exp.titulo}}</h1>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row slider mx-0 mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-pencil-fill" style="color: #18587a;"></i> {{exp.texto}}</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-person-lines-fill" style="color: #18587a;"></i> Publicado por <strong>{{exp.usuario.nombre}} </strong></p>
+            <p class="texto-grande"><i class="bi bi-calendar-date-fill" style="color: #18587a;"></i> {{exp.fecha}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-bullseye" style="color:#18587a;" ></i><strong> {{exp.localizacion.nombre}}</strong>,
+                {{exp.localizacion.provincia.nombre}}
+                ({{exp.localizacion.provincia.comunidad.nombre}})</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-crosshair" style="color: #18587a;"></i><strong> {{exp.categoria.subcategoria.nombre}}</strong>,
+                ({{exp.categoria.nombre}})</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2 d-flex justify-content-between">
+            <p class="texto-grande"><i class="bi bi-suit-heart-fill" style="color: #18587a;"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
+            @if (exp.usuario.id == userId) {
+            <button type="button" class="btn btn-primary btn-md" (click)="borrarExperiencia(exp.id)">Borrar
+                experiencia <i class="bi bi-trash"></i></button>
+            }@else {
+            <button disabled type="button" class="btn btn-primary btn-md">Borrar experiencia <i class="bi bi-trash"></i></button>
+            }
+        </div>
+    </div>
+</div>
+<div class="container mt-3" id="carrusel">
+    <div class="row slider">
+        @for (img of imagenes; track $index) {
+        @if (img.experiencia_id == exp.id) {
+        <div class="col-12 col-md-6 d-flex justify-content-center">
+            <img src="data:image;base64,{{img.nombre}}" class="img-thumbnail mx-4 mt-3"
+                style="max-width: 600px; width: 100%;" alt="imagen_{{img.id}}">
+        </div>
+        }
+        }
+    </div>
+</div>
+<!-- <div class="container mt-3 mb-3" id="carrusel">
+    <div class="row slider">
+        <div class="col">
+            <div id="carousel" class="carousel slide" data-bs-interval="10000">
+                <div class="carousel-inner">
+                    @for (img of imagenes; track $index) {
+                    @if (img.experiencia_id == exp.id) {
+                    <div class="carousel-item active">
+                        <img src="data:image;base64,{{img.nombre}}" class="d-block" alt="imagen_{{img.id}}">
+                    </div>
+                    }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <h2 class="p-3 texto-con-sombra-n">Comentarios de usuarios <i class="bi bi-chat-left"></i></h2>
+        <div class="col-12">
+            <div class="container contact-form p-3">
+                <form method="post" [formGroup]="formComent" (ngSubmit)="registrarComentario()">
+                    <div class="form-floating mt-4">
+                        <textarea class="form-control" placeholder="Texto" formControlName="texto"></textarea>
+                        <label for="floatingTexto">Añadir un comentario</label>
+                        <div class="d-flex justify-content-end">
+                            @if (desactivarPorID()) {
+                            <button class="btn btn-md mt-2 mb-3 " type="submit">Enviar
+                                comentario <i class="bi bi-envelope-arrow-up"></i></button>
+                            } @else {
+                            <button class="btn btn-md mt-2 mb-3" type="submit"
+                                disabled>Enviar
+                                comentario <i class="bi bi-envelope-arrow-up"></i></button>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        @for (coment of comentarios; track $index) {
+        @if(coment.experiencia.id == exp.id){
+        <div class="col-10 col-sm-10 col-md-11 card mx-5 mt-2 mb-2">
+            <div class="card-body">
+                <h5 class="card-title">{{coment.usuario.nombre}}</h5>
+                <p class="card-text">{{coment.texto}}</p>
+                <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
+                <div class="d-flex justify-content-end">
+                    @if (coment.usuario.id == userId) {
+                    <button type="button" class="btn btn-md" (click)="borrarComentario(coment.id)">Borrar comentario <i class="bi bi-envelope-x"></i></button>
+                    }@else {
+                    <button class="btn btn-md" disabled>Borrar comentario <i class="bi bi-envelope-x"></i></button>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+        }
+
+    </div>
+</div>
+}
+}

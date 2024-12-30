@@ -1,0 +1,87 @@
+.container {
+	background-color: #ffd6d6;
+	border-radius: 15px;
+}
+
+.efecto{
+    background: linear-gradient(-45deg, #18587a, #fca7a7, #ffd6d6);
+    /* background: linear-gradient(-45deg, #fca7a7, #fc624d, #18587a, #ffd6d6); */
+	background-size: 400% 400%;
+	-webkit-animation: gradient 15s ease infinite;
+	        animation: gradient 15s ease infinite;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #333;
+}
+
+.animated-image{
+	width: 30%;
+    display: grid;
+    margin: 0 auto;
+	animation: animateImage 5s infinite;
+}
+
+.liked {
+    color:  #fc624d;
+}
+
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    gap: 5px;
+}
+
+
+
+@keyframes animateImage {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@-webkit-keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 5px;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+.btn {
+    color: #000; 
+    background-color: #ff895d;
+    border-color:#fc624d;
+}
+.btn:hover {
+    color: #fff; 
+    background-color: #fc624d;  
+    border-color: #fc624d;  
+    transform: scale(1.05);
+}

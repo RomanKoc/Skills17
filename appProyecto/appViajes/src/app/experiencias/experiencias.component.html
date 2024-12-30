@@ -1,0 +1,44 @@
+<div class="p-3 mx-3 mt-2">
+    <input placeholder="Buscar experiencia.." class="form-control mx-2" type="text" aria-label="Search"
+        [(ngModel)]="buscador">
+    <!-- style="max-width: 500px;" -->
+</div>
+
+
+<div id="contenedor">
+    @for (exp of experiencias; track exp.id) {
+    @if (comprobarExperiencia(exp.titulo)) {
+    <div class="card" style="width: 24rem;margin:1rem">
+        @if (obtenerNombreImagenPorExperiencia(exp) != 'false' ) {
+        <img src="data:image;base64,{{ obtenerNombreImagenPorExperiencia(exp) }}" class="card-img-top" alt="img_experiencia"
+            style="max-width: 400px;max-height: 500px;">
+        } @else {
+        <img src="../../assets/img/default.jpeg" class="card-img-top" alt="img_default"
+            style="max-width: 400px;max-height: 500px;">
+        }
+
+        <div class="card-body">
+            <h5 class="card-title" style="color: #f78536;">{{exp.titulo}}</h5>
+            <!-- <p class="card-text">{{exp.texto}}</p> -->
+            <p style="color: #18587a;" class="card-text">{{exp.usuario.nombre}}<br><small class="text-muted">{{exp.fecha}}</small></p>
+            <div class="d-flex justify-content-between">
+                <p class="card-text">{{exp.localizacion.provincia.nombre}}<small class="text-muted"></small></p>
+            </div>
+            <div class="d-flex mt-2">
+                @for (item of generarIconosPuntuacion(exp.puntuacion); track $index) {
+                <p class="card-text h5 "><i class="bi bi-balloon-heart-fill" style="color:#fc624d; "></i></p>
+                }
+            </div>
+            <div class="d-flex justify-content-between">
+                @if (desactivarPorID()) {
+                <button  aria-disabled="true" class="btn btn-primary megusta">Me gusta <i class="bi bi-balloon-heart"></i></button>
+                } @else {
+                <button  aria-disabled="false" class="btn btn-primary megusta disabled">Me gusta <i class="bi bi-balloon-heart"></i></button>
+                }
+                <a href="experiencia-individual/{{exp.id}}" class="btn btn-primary">Mas información</a>
+            </div>
+        </div>
+    </div>
+    }
+    }
+</div>

@@ -1,0 +1,95 @@
+<div class="p-4">
+    <form id="cont" class="p-3" [formGroup]="formularioExperiencia" (ngSubmit)="registrarExperiencia()">
+        <div class="contact-image">
+            <img src="../../assets/img/imgforms.png" alt="rocket_contact" />
+        </div>
+
+        <h3 class="text-center mt-2 mb-4" style="color: #fc624d;">Nueva Experiencia</h3>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control"
+                        [ngClass]="determinarInputs(formularioExperiencia.get('titulo'))" placeholder="Titulo"
+                        formControlName="titulo">
+                    @if(this.formularioExperiencia.get('titulo')?.errors?.['required']){}
+                    <label for="floatingTitulo">Título</label>
+                </div>
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+                <div class="form-floating">
+                    <input type="date" class="form-control"
+                        [ngClass]="determinarInputs(formularioExperiencia.get('fecha'))" placeholder="Fecha"
+                        formControlName="fecha">
+                    @if(this.formularioExperiencia.get('fecha')?.errors?.['required']){}
+                    <label for="floatingFecha">Fecha</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                @if(this.formularioExperiencia.get('subcategoria')?.errors?.['required']){}
+                <!-- <input list="subcategoria" name="subcategoria" formControlName="subcategoria"
+                    placeholder="Tipo de experiencia.." style="width: 100%; height: 42px;"> -->
+                <!-- <datalist id="subcategoria">
+                    @for (categoria of subcategorias; track $index) {
+                    @for (subcategoria of categoria.subcategorias; track $index) {
+                    <option value="{{subcategoria.nombre}}">({{categoria.nombre}})</option>
+                    }
+                    }
+                </datalist> -->
+                <select formControlName="subcategoria" name="subcategoria" class="form-select">
+                    @for (categoria of subcategorias; track $index) {
+                        @for (subcategoria of categoria.subcategorias; track $index) {
+                        <option value="{{subcategoria.id}}">{{subcategoria.nombre}}</option>
+                        }
+                        }
+                </select>
+
+            </div>
+            <div class="col-md-6 mt-3">
+                <input type="file" class="form-control" disabled multiple accept="image/png, image/jpeg, image/jpg"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <!-- EFECTOS VISUALES CON DATALIST NO VAN -->
+                @if(this.formularioExperiencia.get('localizacion')?.errors?.['required']){}
+                <input list="municipio" name="municipio" formControlName="localizacion" placeholder="Localizacion.."
+                    style="width: 100%; height: 42px;">
+                <datalist id="municipio">
+                    @for (item of localizaciones; track $index) {
+                    <option value="{{item.nombre}}">{{item.nombre}}</option>
+                    }
+                </datalist>
+
+            </div>
+            <div class="col-md-6 d-flex justify-content-center mt-3">
+                <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion"
+                    style="width: 100%; height: 40px;" max="10" min="1"
+                    [ngClass]="determinarInputs(formularioExperiencia.get('puntuacion'))">
+                @if(this.formularioExperiencia.get('puntuacion')?.errors?.['required']){}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-floating mt-3">
+                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"
+                        [ngClass]="determinarInputs(formularioExperiencia.get('texto'))"></textarea>
+                    <label for="floatingTexto">Texto</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sexta fila -->
+        <div class="row mt-3">
+            <div class="col-md-12 d-flex justify-content-center mb-3">
+                <button class="btn btn-primary" type="submit" [disabled]="formularioExperiencia.invalid">Crear
+                    experiencia</button>
+            </div>
+        </div>
+    </form>
+</div>

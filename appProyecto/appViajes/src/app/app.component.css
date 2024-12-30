@@ -1,0 +1,158 @@
+*{
+    box-sizing: border-box;
+}
+h1{
+    color: #fc624d;
+}
+nav {
+    background-color: #18587a; /* Cambia "#yourcolor" al color deseado */
+}
+/* @media (max-width: 991.98px) {
+    .navbar-toggler {
+        order: -1;
+    }
+} */
+.navbar-nav .nav-link {
+    color: #fff;
+}
+.navbar-nav .nav-link:hover {
+    color:#fc624d;
+}
+.btn-outline-success {
+    color: #fff; 
+    border-color: #fc624d; 
+}
+.btn-outline-success:hover {
+    color: #000; 
+    background-color: #ff895d;
+    border-color: #fc624d;
+    transform: scale(1.05);
+}
+
+.btn-outline-primary{
+    color: #000; 
+    border-color: #fc624d;
+}
+    .btn-primary {
+        color: #000; 
+        background-color: #ff895d;
+        border-color:#fc624d;
+    }
+.btn-outline-primary:hover,
+    .btn-primary:hover {
+        color: #fff; 
+        background-color: #fc624d;
+        border-color: #fc624d;
+        transform: scale(1.05);
+    }
+
+
+    /* MODAL */
+    /*Efecto*/
+.modalmask {
+    position: fixed;
+    font-family: Arial, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalmask:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+/*Formato de la ventana*/
+.modalbox{
+    width: 400px;
+    position: relative;
+    padding: 5px 20px 13px 20px;
+    background: #fff;
+    border-radius:3px;
+    -webkit-transition: all 500ms ease-in;
+    -moz-transition: all 500ms ease-in;
+    transition: all 500ms ease-in;
+     
+}
+
+/*Movimientos*/
+.movedown {
+    margin: 0 auto;
+}
+.rotate {
+    margin: 10% auto;
+    -webkit-transform: scale(-5,-5);
+    transform: scale(-5,-5);
+}
+.resize {
+    margin: 10% auto;
+    width:0;
+    height:0;
+ 
+}
+.modalmask:target .movedown{       
+    margin:10% auto;
+}
+.modalmask:target .rotate{     
+    transform: rotate(360deg) scale(1,1);
+        -webkit-transform: rotate(360deg) scale(1,1);
+}
+ 
+.modalmask:target .resize{
+    width:400px;
+    height:200px;
+}
+
+/*Boton de cerrar*/
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 1px;
+    text-align: center;
+    top: 1px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius:3px;
+ 
+}
+ 
+.close:hover {
+    background: #FAAC58;
+    color:#222;
+}
+#privacidad{
+    border: none; /* Quita el borde del botón */
+    background: none; /* Quita el fondo del botón */
+    padding: 0; /* Quita el relleno interno del botón */
+    margin: 0; /* Quita el margen del botón */
+    font-family: inherit; /* Usa la fuente heredada del botón */
+    font-size: inherit; /* Usa el tamaño de fuente heredado del botón */
+    color: inherit; /* Usa el color de texto heredado del botón */
+    cursor: pointer; /* Cambia el cursor al puntero al pasar sobre el botón */
+    outline: none; /* Quita el contorno*/
+}
+    
+footer{
+    background: #18587a;
+    color: #fff;
+}
+.icono {
+    max-width: 20px; /* Ajusta el tamaño máximo según tus necesidades */
+    max-height: 20px;
+}
+@media (min-width: 615px) {
+    .espaciado {
+      letter-spacing: 14px;
+      text-align: center;
+    }
+  }

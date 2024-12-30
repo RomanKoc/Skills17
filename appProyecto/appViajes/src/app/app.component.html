@@ -1,0 +1,143 @@
+<header>
+  <!-- COMPONENTE HEADER FIJO -->
+  <!-- el nav cambiara el contenido del main -->
+  <!-- pinchar en muñeco FIJO y que cambie el main por COMPONENTE INFO USUARIO  -->
+  <nav class="navbar navbar-expand  border-bottom">
+    <div class="container-fluid ">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-start">
+        <img src="../assets/img/viaje2-removebg-preview.png" alt="LOGO_TRAVEL" width="120" height="100">
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+        <h1 class="text-center espaciado">Travel 360</h1>
+      </div>
+      @if (userId == 'not') {
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+        <a class="nav-link " aria-current="page" href="login">
+          <button type="button" class="btn btn-outline-primary btn-md me-2 p-1 mt-1">Mi cuenta</button></a>
+        <a class="nav-link " aria-current="page" href="registro">
+          <button type="button" class="btn btn-primary btn-md me-1 p-1 mt-1">Crear Cuenta</button></a>
+      </div>
+      } @else {
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+        <a class="nav-link " aria-current="page" href="info-usuario">
+          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1 btn-md">Usuario</button></a>
+        <a class="nav-link " aria-current="page" href="salir?¿?">
+          <button type="button" class="btn btn-primary btn-md me-1 p-1 mt-1" (click)="cerrarSesion()">Cerrar
+            Sesion</button></a>
+      </div>
+      }
+      <!-- si se ha iniciado sesion: -->
+
+      <!--  -->
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-sm ">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto" id="nav-hover-2">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="bienvenida">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="experiencias">Experiencias</a>
+          </li>
+
+          <li class="nav-item">
+            @if (desactivarPorID()) {
+            <a class="nav-link" aria-current="page" aria-disabled="true" href="experiencia-nueva">Añadir experiencia</a>
+            } @else {
+            <a class="nav-link disabled text-secondary" aria-current="page" aria-disabled="false" href="#">Añadir
+              experiencia</a>
+            }
+          </li>
+
+        </ul>
+        <div class="d-flex align-items-center mt-2">
+          @if (userId != 'not') {
+          <p class="text-white" *ngIf="usuario">{{usuario.nombre}} {{usuario.apellidos}} <i class="bi bi-person-fill-check h4" style="color: #fc624d;"></i></p>
+          }@else {
+          <p class="text-white">No se ha iniciado sesion <i class="bi bi-person-fill-x h4" style="color: #fc624d;"></i></p>
+          }
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24">
+                <use xlink:href="#bootstrap"></use>
+              </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-white">© 2024 Adri&Roman, SA</span>
+          </div>
+
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-white" href="#"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li class="ms-3"><a class="text-white" href="#"><i class="bi bi-twitter"></i></a>
+            </li>
+            <li class="ms-3"><a href="#" class="text-white icono" href="#"><i class="bi bi-envelope-arrow-up-fill"></i></a>
+            </li>
+            <li class="ms-3">
+              <!-- Button trigger modal -->
+              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="privacidad">
+                <a class="text-white" href="#"><i class="bi bi-shield-lock"></i></a>
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Politica de Privacidad</h5>
+                      <button disabled type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Última actualización: Lunes, 26 de Febrero de 2024.
+                      <br>
+                      <strong>Adri&Roman S.A.</strong> te informa sobre nuestras políticas con respecto a la
+                      recopilación, uso y divulgación de datos personales cuando utilizas nuestro Servicio y las
+                      opciones que tienes asociadas a esos datos.
+                      <br>
+                      Utilizamos tus datos para proporcionar y mejorar el Servicio. Al utilizar el Servicio, aceptas la
+                      recopilación y el uso de la información de acuerdo con esta política. A menos que se defina lo
+                      contrario en esta Política de Privacidad, los términos utilizados en esta Política de Privacidad
+                      tienen los mismos significados que en nuestros Términos y Condiciones, accesibles desde [URL de
+                      tus términos y condiciones].
+                      <br>
+                      Recopilación y Uso de la Información
+                      Recopilamos diferentes tipos de información para diversos fines con el fin de proporcionar y
+                      mejorar nuestro Servicio para ti.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      </div>
+    </div>
+  </div>
+
+
+</footer>

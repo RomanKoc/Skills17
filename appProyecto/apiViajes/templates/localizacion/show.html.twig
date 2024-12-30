@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localizacion{% endblock %}
+
+{% block body %}
+    <h1>Localizacion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ localizacion.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ localizacion.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ localizacion.nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_localizacion_index') }}">back to list</a>
+
+    <a href="{{ path('app_localizacion_edit', {'id': localizacion.id}) }}">edit</a>
+
+    {{ include('localizacion/_delete_form.html.twig') }}
+{% endblock %}
